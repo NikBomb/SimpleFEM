@@ -3,6 +3,7 @@ import SimpleFEM as simFem
 import matplotlib.pyplot as plt
 plt.interactive(True)
 
+#Compare Simple FEM and results from https://scicomp.stackexchange.com/questions/35367/i-wrote-a-2d-finite-element-program-for-axial-loaded-plates-but-the-results-are
 
 def test_4():
 
