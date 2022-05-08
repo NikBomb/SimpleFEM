@@ -1,6 +1,5 @@
-#https://scicomp.stackexchange.com/questions/35367/i-wrote-a-2d-finite-element-program-for-axial-loaded-plates-but-the-results-are
 import numpy as np
-import PlateFEM as pfem
+import SimpleFEM as simFem
 import matplotlib.pyplot as plt
 
 
@@ -113,7 +112,7 @@ if __name__ == "__main__":
 
 
 
-    alumininium = pfem.Elastic(30E6, 0.45)
+    alumininium = simFem.Elastic(30E6, 0.45)
     t = 1.0
     boundaryConditions = {
         "fixed": {0: "all", 9: "all", 18: "all"},
@@ -121,7 +120,7 @@ if __name__ == "__main__":
         "applied force": {8: [6000, 0], 17: [6000, 0], 26: [6000, 0]}
 
     }
-    plate = pfem.Body(pfem.createTriangles(connectivity, nodes, alumininium, t), np.shape(nodes)[1])
+    plate = simFem.Body(simFem.createTriangles(connectivity, nodes, alumininium, t), np.shape(nodes)[1])
     plate.assembleGlobalStiffness()
     with open('MyStiff.npy', 'wb') as f:
         np.save(f, plate.K)

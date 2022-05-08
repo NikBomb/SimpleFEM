@@ -1,5 +1,5 @@
 import numpy as np
-import PlateFEM as pfem
+import SimpleFEM as simFem
 
 #test from pdf 2D triangular Elemnt pdf
 
@@ -10,9 +10,9 @@ if __name__ == "__main__":
         "fixed" : {0 : 1, 2 : "all", 3 : "all" },
         "applied force" : {1: [0, -1000]}
     }
-    alumininium = pfem.Elastic(30E6, 0.25)
+    alumininium = simFem.Elastic(30E6, 0.25)
     t = 0.5
-    plate = pfem.Body(pfem.createTriangles(connectivity, nodes, alumininium, t), np.shape(nodes)[1])
+    plate = simFem.Body(simFem.createTriangles(connectivity, nodes, alumininium, t), np.shape(nodes)[1])
     plate.assembleGlobalStiffness()
     plate.applyBcs(boundaryConditions)
     plate.solve()

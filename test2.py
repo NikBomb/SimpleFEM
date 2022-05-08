@@ -1,5 +1,5 @@
 import numpy as np
-import PlateFEM as pfem
+import SimpleFEM as simFem
 import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
@@ -14,13 +14,13 @@ if __name__ == "__main__":
                             [3,9,8],
                             [3,4,9]])
 
-    alumininium = pfem.Elastic(30E6, 0.25)
+    alumininium = simFem.Elastic(30E6, 0.25)
     t = 1.0
     boundaryConditions = {
         "fixed": {0: "all", 5: "all"},
         "applied force": {4: [0, 20000], 9: [0, 20000] }
     }
-    plate = pfem.Body(pfem.createTriangles(connectivity, nodes, alumininium, t), np.shape(nodes)[1])
+    plate = simFem.Body(simFem.createTriangles(connectivity, nodes, alumininium, t), np.shape(nodes)[1])
     plate.assembleGlobalStiffness()
     plate.applyBcs(boundaryConditions)
     plate.solve()
