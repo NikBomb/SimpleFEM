@@ -1,9 +1,10 @@
 import numpy as np
 import SimpleFEM as simFem
+import pytest
 
 #test from pdf 2D triangular Elemnt pdf
 
-if __name__ == "__main__":
+def test_1():
     nodes = np.array([[3, 3, 0, 0], [0, 2, 2, 0]])
     connectivity = np.array([[0, 1, 3], [2, 3, 1]])
     boundaryConditions = {

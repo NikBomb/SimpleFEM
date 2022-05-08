@@ -1,8 +1,10 @@
 import numpy as np
 import SimpleFEM as simFem
 import matplotlib.pyplot as plt
+plt.interactive(True)
 
-if __name__ == "__main__":
+
+def test_3():
     nodes = np.array([[0,12,24,36,48,
                        0,12,24,36,48,
                        6,6,0,6,12,

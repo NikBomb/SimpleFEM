@@ -1,10 +1,10 @@
 import numpy as np
 import SimpleFEM as simFem
 import matplotlib.pyplot as plt
+plt.interactive(True)
 
 
-
-if __name__ == "__main__":
+def test_4():
 
     # constants
     P = 18000  # Load (Newtons)

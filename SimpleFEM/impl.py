@@ -77,10 +77,6 @@ class Body:
          for dof, idx in zip(sol, self.solInd):
              self.sol[idx] = dof
 
-
-
-
-
 class Elastic:
     def __init__(self, Y, nu):
         self.Y = Y

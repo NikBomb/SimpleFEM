@@ -1,8 +1,11 @@
 import numpy as np
 import SimpleFEM as simFem
 import matplotlib.pyplot as plt
+plt.interactive(True)
 
-if __name__ == "__main__":
+
+
+def test_2():
     nodes = np.array([[0,12,24,36,48,0,12,24,36,48],
                       [0,0,0,0,0,12,12,12,12,12]])
     connectivity = np.array([[0,6,5],
