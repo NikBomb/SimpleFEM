@@ -1,8 +1,7 @@
 import numpy as np
 import SimpleFEM as simFem
-import pytest
 
-#test from pdf 2D triangular Elemnt pdf
+#test from pdf 2D triangular Element from ->  Development of Membrane, Plate and Flat Shell Elements in Java by Kaushalkumar Kansara
 
 def test_1():
     nodes = np.array([[3, 3, 0, 0], [0, 2, 2, 0]])

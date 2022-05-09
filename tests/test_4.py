@@ -3,7 +3,7 @@ import SimpleFEM as simFem
 import matplotlib.pyplot as plt
 plt.interactive(True)
 
-#Compare Simple FEM and results from https://scicomp.stackexchange.com/questions/35367/i-wrote-a-2d-finite-element-program-for-axial-loaded-plates-but-the-results-are
+# Compare Simple FEM and results from https://scicomp.stackexchange.com/questions/35367/i-wrote-a-2d-finite-element-program-for-axial-loaded-plates-but-the-results-are
 
 def test_4():
 
@@ -24,7 +24,7 @@ def test_4():
 
     ndcoor = np.zeros((nnds, 2))  # Table which stores the INITIAL coordinates (in terms of mm) for each node
     nd_rnc = np.zeros((nnds, 2))  # Table which stores the 'row and column' coordinates for each node
-    nds_in_ele = np.zeros((nele, 3), dtype=np.int)  # the nodes which comprise each element
+    nds_in_ele = np.zeros((nele, 3), dtype=np.int64)  # the nodes which comprise each element
     glbStiff = np.zeros((ndof, ndof))  # global stiffness matrix (GSM)
     lst_wallnds = []  # List of nodes (indices) which are coincident with the rigid wall on the left
     lst_wallnds.clear()

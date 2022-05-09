@@ -3,6 +3,7 @@ import SimpleFEM as simFem
 import matplotlib.pyplot as plt
 plt.interactive(True)
 
+#test from pdf 2D triangular Element from ->  Development of Membrane, Plate and Flat Shell Elements in Java by Kaushalkumar Kansara
 
 
 def test_2():

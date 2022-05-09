@@ -1,4 +1,6 @@
 import numpy as np
+from .elements import Triangle
+
 # vectors are horz
 # kg	mm	ms	kN	GPa	kN-mm	7.83e-06	2.07e+02	15.65	9.806e-03
 #       in  s   lbf psi
@@ -7,27 +9,6 @@ import numpy as np
 
 def nodeToMatrix(node1: int, dof1: int, node2:int, dof2:int ) -> list[int] :
     return [node1 * 2 + dof1, node2 * 2 + dof2]
-
-
-class Triangle:
-    def __init__(self, x, y, labels, elastic, t):
-        self.x = x
-        self.y = y
-        self.elastic = elastic
-        self.labels = labels
-        self.t = t
-        x1 = x[0]
-        x2 = x[1]
-        x3 = x[2]
-        y1 = y[0]
-        y2 = y[1]
-        y3 = y[2]
-        self.detJ = (x1 - x3)*(y2-y3) - (y1-y3)*(x2 - x3)
-        self.A = 0.5*abs(self.detJ)
-        self.B = 1 / self.detJ * np.array([[y2 - y3, 0, y3 - y1, 0, y1 - y2, 0],
-                                              [0, x3 - x2, 0, x1 - x3, 0, x2 - x1],
-                                              [x3 - x2, y2 - y3, x1 - x3, y3 - y1, x2- x1, y1 - y2] ])
-        self.K = self.t * self.A * np.matmul(np.matmul(self.B.transpose(),  elastic.E), self.B)
 
 
 class Body:
@@ -77,24 +58,6 @@ class Body:
          for dof, idx in zip(sol, self.solInd):
              self.sol[idx] = dof
 
-class Elastic:
-    def __init__(self, Y, nu):
-        self.Y = Y
-        self.nu = nu
-        self.E = Y / (1-nu**2) * np.array([[1, nu, 0],
-                                           [nu, 1, 0],
-                                           [0, 0, 0.5*(1-nu)]])
 
 
-def createTriangles(connectivity, nodes, material, t):
-    triangles = []
-    for triangle in connectivity:
-        x = np.empty(3)
-        y = np.empty(3)
-        labels = []
-        for local, label in zip(range(3), triangle):
-            x[local] = nodes[0][label]
-            y[local] = nodes[1][label]
-            labels.append(label)
-        triangles.append(Triangle(x, y, labels, material, t))
-    return triangles
+
