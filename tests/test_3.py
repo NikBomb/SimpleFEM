@@ -67,9 +67,15 @@ def test_3():
 
     fig, ax = plt.subplots()
     ax.scatter(nodes[0, :] + plate.sol[0::2], nodes[1, :] + plate.sol[1::2])
+    assert abs(plate.sol[18] + 0.034263) < 1e-4
+    assert abs(plate.sol[19] - 0.194412) < 1e-4
+    assert abs(plate.sol[14] + 0.025599) < 1e-4
+    assert abs(plate.sol[15] - 0.062956) < 1e-4
+
     for i in range(np.shape(nodes)[1]):
         ax.annotate(i, (nodes[0, i], nodes[1, i]))
-    plt.triplot(nodes[0, :], nodes[1, :], connectivity)
+    plt.tripcolor(nodes[0, :], nodes[1, :], connectivity, facecolors=plate.sigma, edgecolors='k')
+    plt.gca().set_aspect('equal')
     plt.show()
 
 

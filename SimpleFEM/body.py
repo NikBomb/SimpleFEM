@@ -57,6 +57,17 @@ class Body:
          sol = np.linalg.solve(self.KR, self.fR)
          for dof, idx in zip(sol, self.solInd):
              self.sol[idx] = dof
+             self.sigma = np.zeros([len(self.triangles), 3])
+         for [triangle, idx] in zip(self.triangles, range(0, len(self.triangles))):
+             u1 = self.sol[triangle.labels[0] * 2]
+             v1 = self.sol[triangle.labels[0] * 2 + 1]
+             u2 = self.sol[triangle.labels[1] * 2]
+             v2 = self.sol[triangle.labels[1] * 2 + 1]
+             u3 = self.sol[triangle.labels[2] * 2]
+             v3 = self.sol[triangle.labels[2] * 2 + 1]
+             epsilon = np.matmul(triangle.B, np.array([u1, v1, u2, v2, u3, v3]))
+             self.sigma[idx, :] = np.matmul(triangle.elastic.E, epsilon).transpose()
+
 
 
 
