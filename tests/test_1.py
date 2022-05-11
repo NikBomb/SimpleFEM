@@ -19,3 +19,4 @@ def test_1():
     assert abs(plate.sol[0] - 1.9e-5) < 1e-5
     assert abs(plate.sol[2] - 8.73e-6) < 1e-5
     assert abs(plate.sol[3] + 7.415e-5) < 1e-5
+    assert np.linalg.norm(plate.sigma - np.array([[-93, -1136, -62], [93, 23, -297]])) < 1
